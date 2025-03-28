@@ -1,0 +1,22 @@
+name: Python CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout репозитория
+        uses: actions/checkout@v3
+
+      - name: Установка Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.x'
+
+      - name: Установка зависимостей
+        run: |
+          pip install -r requirements.txt
+
+      - name: Запуск тестов
+        run: pytest
